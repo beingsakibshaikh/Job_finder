@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Job(models.Model):
     JOB_TYPES = [
@@ -21,7 +23,8 @@ class Job(models.Model):
     def __str__(self):
         return f"{self.title} at {self.company}"
 
-from django.contrib.auth.models import User
+    def get_absolute_url(self):
+        return reverse('job_detail', args=[str(self.id)])
 
 class Bookmark(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

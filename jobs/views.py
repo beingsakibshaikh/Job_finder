@@ -5,6 +5,8 @@ from .models import Job, Bookmark
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import RegisterForm
 from django.contrib.auth import login
+from django.http import HttpResponse
+
 
 
 
@@ -54,3 +56,12 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'jobs/register.html', {'form': form})
+
+
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow:",
+        "Sitemap: https://job-finder-n79o.onrender.com/sitemap.xml"
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

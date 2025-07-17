@@ -21,6 +21,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.sitemaps.views import sitemap
 from jobs.sitemaps import JobSitemap
+from jobs.views import robots_txt
+
 
 
 sitemaps = {
@@ -34,7 +36,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='jobs/login.html', next_page='home'), name='login'),
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path("robots.txt", robots_txt),
+
 
 ]
 
-    
